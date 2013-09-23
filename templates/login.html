@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load bootstrap_toolkit %}
+<html>
+<head>
+    <title>用户登陆</title>
+</head>
+{% bootstrap_stylesheet_tag %}
+{% bootstrap_stylesheet_tag "responsive" %}
+<style type="text/css">
+    .center {
+        width: auto;
+        display: table;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .text-center {
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="container">
+        <br><br><br><br><br><br><br><br><br><br>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="center">
+                <fieldset>
+                    <legend>登陆</legend>
+                    <table>
+                        <tr>
+                            <td align="right">用户名：</td>
+                            <td>{{ form.name }}</td>
+                        </tr>
+                        <tr>
+                            <td align="right">密码：</td>
+                            <td>{{ form.password }}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td align="center"><input type="checkbox">记住我</td>
+                        </tr>
+                        <tr>
+                            <td align="right"><button class="btn" type="submit">登陆</button> </td>
+                            <td align="right"><button class="btn" type="button" onclick="location='../registe'">现在注册</button> </td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+{% load bootstrap_toolkit %}
+<html>
+<head>
+    <title>用户注册</title>
+</head>
+{% bootstrap_stylesheet_tag %}
+{% bootstrap_stylesheet_tag "responsive" %}
+<style type="text/css">
+    .center {
+        width: auto;
+        display: table;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .text-center {
+        text-align: center;
+    }
+    #ul1{list-style:none;
+	    margin:0}
+    #ul1 li{float:left;
+		    height:20px}
+</style>
+<body>
+    <div class="container">
+    <br><br><br><br><br><br><br><br><br><br>
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <div class="center">
+        <fieldset>
+            <legend>注册</legend>
+            <table>
+                <tr>
+                    <td align="right">用户名:</td>
+                    <td>{{ form.name }}</td>
+                </tr>
+                <tr>
+                    <td align="right">邮箱:</td>
+                    <td>{{ form.email }}</td>
+                </tr>
+                <tr>
+                    <td align="right">密码:</td>
+                    <td>{{ form.password }}</td>
+                </tr>
+                <tr>
+                    <td align="right">重复密码:</td>
+                    <td>{{ form.repassword }}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td align="center"><input type="checkbox"> 同意网站条款</td>
+                </tr>
+                <tr>
+                    <td align="right"><button type="submit" class="btn">注册</button></td>
+                    <td align="right"><button class="btn" type="button" onclick="location='../login'">登陆</button></td>
+                </tr>
+            </table>
+        </fieldset>
+        </div>
+    </form>
+    </div>
+</body>
+</html>
