@@ -1,15 +1,20 @@
 # -*- coding: utf-8 -*-
 # Create your views here
 from django.shortcuts import render_to_response
+from django.http import HttpResponseRedirect
 from Manager.forms import RegisteForm,LoginForm
 from Manager.models import User
+from Manager.error import *
 from django.views.decorators.csrf import csrf_exempt
 from django.db import IntegrityError
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.forms import ValidationError
 
 
 @csrf_exempt
 def Registe(request):
-    errors = ''
+    errors = dict()
     if request.method == 'POST':
         form = RegisteForm(request.POST)
         if form.is_valid():
@@ -17,8 +22,11 @@ def Registe(request):
             p1 = User(name=context['name'], email=context['email'], password=context['password'])
             try:
                 p1.save()
+                return HttpResponseRedirect('/login')
             except IntegrityError:
-                errors = '用户已经存在'
+                errors['exists'] = USER_EXISTS
+        else:
+            errors = form._errors
     else:
         form = RegisteForm()
 
@@ -29,6 +37,7 @@ def Login(request):
     errors = ''
     if request.method == 'POST':
         form = LoginForm(request.POST)
+        user = User.objects.get(id = request.id)
         if form.is_valid():
             context = form.cleaned_data
             try:
