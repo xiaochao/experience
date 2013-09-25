@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}首页{% endblock %}
+{% block content %}
+<div id="main">
+    <div>
+        <p>
+            <i class=" icon-th-list"></i>
+            最新吐槽
+        </p>
+        <div style="margin:0;padding:0; width:735px;height:1px;background-color:#8aabe5;overflow:hidden;"></div>
+    </div>
+    <div>
+        {% for bug in bugs %}
+            <p>{{ bug.title }}</p>
+        {% endfor %}
+    </div>
+
+    <!-- 建立一个模态对话框，渐显渐消 -->
+<div id="myModal" class="modal hide fade">
+    <!-- 对话框内容 -->
+    <div class="modal-body">
+        Hello world!
+    </div>
+    <!-- 对话框按钮 -->
+    <div class="modal-footer">
+        <a href="#" class="btn primary">OK</a>
+    </div>
+</div>
+</div>
+
+<script type="text/javascript">
+// 确保对话框只在页面加载完成后显示
+$(function() {
+    // 点击之后隐藏对话框
+    $("#myModal").bind("show", function() {
+        $("#myModal a.btn").click(function(e) {
+            // 这里放点击后的代码
+            // 我们这里只放一点示例内容
+            console.log("button pressed: "+$(this).html());
+
+            // 隐藏对话框
+            $("#myModal").modal('hide');
+        });
+    });
+
+    // 对话框隐藏后就可以删除事件监听了
+    $("#myModal").bind("hide", function() {
+        // 所谓“松绑”
+        $("#myModal a.btn").unbind();
+    });
+
+    // 最后再设置对话框本身
+    $("#myModal").modal({
+      "backdrop"  : "static",
+      "keyboard"  : true,
+      "show"      : true    // 这个参数确保对话框立即显示
+    });
+});
+</script>
+{% endblock %}

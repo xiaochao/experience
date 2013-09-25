@@ -1,28 +1,6 @@
-<!DOCTYPE html>
-
-{% load bootstrap_toolkit %}
-<html>
-<head>
-    <title>用户注册</title>
-</head>
-{% bootstrap_stylesheet_tag %}
-{% bootstrap_stylesheet_tag "responsive" %}
-<style type="text/css">
-    .center {
-        width: auto;
-        display: table;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .text-center {
-        text-align: center;
-    }
-    #ul1{list-style:none;
-	    margin:0}
-    #ul1 li{float:left;
-		    height:20px}
-</style>
-<body>
+{% extends "base.html" %}
+{% block title %}注册{% endblock %}
+{% block content %}
     <div class="container">
     <br><br><br><br><br><br><br><br><br><br>
     <form action="" method="post">
@@ -57,5 +35,4 @@
         </div>
     </form>
     </div>
-</body>
-</html>
+{% endblock %}

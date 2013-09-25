@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from Manager.views import Registe,Login
+from Manager import views
 from django.contrib.auth.views import login,logout
 
 # Uncomment the next two lines to enable the admin:
@@ -16,8 +16,12 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-    url(r'^registe/$', Registe),
-    url(r'^login/$', Login),
-    url(r'^account/login/$', login, {'template_name': 'login_new.html'}),
+    url(r'^registe/$', views.Registe),
+    url(r'^login/$', views.Login),
+    url(r'^account/login$', login, {'template_name': 'login_new.html'}),
+    url(r'^css/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/supertool/projects/www/UserManager/assets/css'}),
+    url(r'^js/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/supertool/projects/www/UserManager/assets/js'}),
+    url(r'^images/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/supertool/projects/www/UserManager/assets/images'}),
     url(r'^account/logout/$', logout),
+    url(r'^index$', views.Index),
 )

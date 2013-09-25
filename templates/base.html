@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+{% load bootstrap_toolkit %}
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+{% bootstrap_stylesheet_tag %}
+{% bootstrap_stylesheet_tag "responsive" %}
+<style type="text/css">
+    .center {
+        width: auto;
+        display: table;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .text-center {
+        text-align: center;
+    }
+    #footer {
+        position: absolute;
+        bottom: 0;
+        padding: 10px 0;
+        background-color: #AAA;
+        width: 100%;
+    }
+    #footer h1 {
+        font: 20px/2 Arial;
+        margin:0;
+        padding:0 10px;
+    }
+    #bNav{
+        margin-top:10px;
+        text-align:center;
+    }
+    #bNav ul{
+        padding:4px 0;
+        margin:0;
+        overflow:hidden;
+    }
+    #bNav ul li{
+        display:inline;
+        padding:0;
+        width:100px;
+    }
+    div#side1 {
+        position:absolute;
+        width:150px;
+        top: 100px;
+        left:0px;
+    }
+    #main {
+        padding-bottom: 60px;
+        position: relative;
+        left: 300px;
+        top: 100px;
+        width: 850px;
+        margin: 0px;
+    }
+    div#side2 {
+        position:absolute;
+        width:150px;
+        top: 100px;
+        left: 600px;
+    }
+
+    .test a:link{color:#666;background:#CCC;text-decoration:none;}
+    .test a:visited{color:#666;text-decoration:underline;}
+    .test a:hover{color:#FFF; font-weight:bold;text-decoration:underline;background:#F00;}
+</style>
+<body>
+    <div class="navbar navbar-fixed-top navbar-inverse">
+        <div class="navbar-inner">
+
+            <a class="brand" href="#">BugShare</a>
+            <form class="navbar-search pull-left">
+                <input type="text" class="search-query" placeholder="Search">
+                <button type="submit" class="btn btn-inverse">发布</button>
+            </form>
+            <ul class="nav  ">
+                <li class="active"><a href="#">首页</a></li>
+                <li><a href="#">热门</a></li>
+                <li><a href="#">发现</a></li>
+            </ul>
+
+            <ul class="nav pull-right">
+                <li><a href="#"> chenshichao </a></li>
+            </ul>
+        </div>
+    </div>
+    {% block content %}{% endblock %}
+    <div id="footer">
+        <div class="test" id="bNav">
+        <ul >
+            <li><a href="">关于我们</a></li>
+            <li><a href="">服务条款</a></li>
+            <li><a href="">帮助中心</a></li>
+            <li><a href="">合作伙伴</a></li>
+            <li><a href="">媒体报道</a></li>
+            <li><a href="">建议反馈</a></li>
+            <li><a href="">开发日志</a></li>
+            <li class="last-item"><a href="">关注我们</a></li>
+        </ul>
+        </div>
+    </div>
+</body>
+</html>
