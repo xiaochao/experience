@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-{% load bootstrap_toolkit %}
 <html>
 <head>
+    <meta http-equiv=“Content-Type” content=“text/html;charset=utf-8″/>
     <title>{% block title %}{% endblock %}</title>
 </head>
-{% bootstrap_stylesheet_tag %}
-{% bootstrap_stylesheet_tag "responsive" %}
 <style type="text/css">
     .center {
         width: auto;
@@ -16,9 +14,10 @@
     .text-center {
         text-align: center;
     }
+    .contain {
+        float:right;
+    }
     #footer {
-        position: absolute;
-        bottom: 0;
         padding: 10px 0;
         background-color: #AAA;
         width: 100%;
@@ -42,6 +41,13 @@
         padding:0;
         width:100px;
     }
+    #bOperate ul{
+        list-style: none;
+    }
+    #bOperate ul li{
+        float: left;
+        width: 40px;
+    }
     div#side1 {
         position:absolute;
         width:150px;
@@ -51,10 +57,9 @@
     #main {
         padding-bottom: 60px;
         position: relative;
-        left: 300px;
-        top: 100px;
+        top: 0px;
         width: 850px;
-        margin: 0px;
+        margin: 0px auto;
     }
     div#side2 {
         position:absolute;
@@ -66,29 +71,85 @@
     .test a:link{color:#666;background:#CCC;text-decoration:none;}
     .test a:visited{color:#666;text-decoration:underline;}
     .test a:hover{color:#FFF; font-weight:bold;text-decoration:underline;background:#F00;}
+    body{margin:0px; padding:0px; font-size:12px;}
+
 </style>
+
+<link href="/css/bootstrap.css" type="text/css" rel="stylesheet">
+<link href="/css/bootstrap-responsive.css" type="text/css" rel="stylesheet">
+<link href="/css/docs.css" type="text/css" rel="stylesheet">
+<link href="js/google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="/ico/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="/ico/favicon.png">
+
 <body>
     <div class="navbar navbar-fixed-top navbar-inverse">
         <div class="navbar-inner">
-
-            <a class="brand" href="#">BugShare</a>
-            <form class="navbar-search pull-left">
-                <input type="text" class="search-query" placeholder="Search">
-                <button type="submit" class="btn btn-inverse">发布</button>
-            </form>
-            <ul class="nav  ">
+            <ul class="nav">
+                <li><a class="brand" href="#">BugShare</a></li>
                 <li class="active"><a href="#">首页</a></li>
                 <li><a href="#">热门</a></li>
                 <li><a href="#">发现</a></li>
             </ul>
-
+            <form class="navbar-search pull-left">
+                <input type="text" class="search-query" placeholder="Search">
+            </form>
+            &nbsp;
+            {% if needlogin %}
+                <a href="#NewBug" role="button" class="btn btn-inverse" data-toggle="modal">发布</a>
+            {% endif %}
             <ul class="nav pull-right">
-                <li><a href="#"> chenshichao </a></li>
+                <li>
+                    {% if username %}
+                        <a href="#"> {{ username }} </a>
+                    {% else %}
+                        <a href="../login">登陆</a>
+                    {% endif %}
+                </li>
+                <li>
+                    {% if username %}
+                        <a href="../logout">注销</a>
+                    {% endif %}
+                </li>
             </ul>
         </div>
     </div>
-    {% block content %}{% endblock %}
-    <div id="footer">
+    <div id="NewBug" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header" style="background-color:#000000;">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 id="myModalLabel"><span style="color: #ffffff">发布一个新bug</span></h3>
+        </div>
+        <div class="modal-body">
+            <form action="" method="POST">
+                <h5>新bug</h5>
+                <input type="text" class="input-block-level" placeholder="title" name="title">
+                <br>
+                <h5>具体描述</h5>
+                <textarea class="input-block-level" rows="4" style="resize: none;" name="explain"></textarea>
+                <h5>关键字</h5>
+                <input type="text" class="input-block-level" placeholder="以逗号分割" name="sign">
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary ">发表</button>
+                    <button class="btn"  data-dismiss="modal">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="Tip" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <h3 id="myModalLabel">哎哟，你还没有登陆哦</h3>
+        </div>
+        <div class="row">
+            <a href="/login">现在去登陆</a>
+            <a href="/registe">现在去注册</a>
+        </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+    <div id="footer" class="navbar-fixed-bottom">
         <div class="test" id="bNav">
         <ul >
             <li><a href="">关于我们</a></li>
@@ -102,5 +163,28 @@
         </ul>
         </div>
     </div>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap-transition.js"></script>
+    <script src="/js/bootstrap-alert.js"></script>
+    <script src="/js/bootstrap-modal.js"></script>
+    <script src="/js/bootstrap-dropdown.js"></script>
+    <script src="/js/bootstrap-scrollspy.js"></script>
+    <script src="/js/bootstrap-tab.js"></script>
+    <script src="/js/bootstrap-tooltip.js"></script>
+    <script src="/js/bootstrap-popover.js"></script>
+    <script src="/js/bootstrap-button.js"></script>
+    <script src="/js/bootstrap-collapse.js"></script>
+    <script src="/js/bootstrap-carousel.js"></script>
+    <script src="/js/bootstrap-typeahead.js"></script>
+    <script src="/js/bootstrap-affix.js"></script>
+
+    <script src="/js/holder/holder.js"></script>
+    <script src="/js/google-code-prettify/prettify.js"></script>
+
+    <script src="/js/application.js"></script>
+    <script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3d8e7fc0de8a2a75f2ca3bfe128e6391' type='text/javascript'%3E%3C/script%3E"));
+    </script>
 </body>
 </html>

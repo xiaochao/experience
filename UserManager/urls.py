@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from Manager import views
-from django.contrib.auth.views import login,logout
+from django.contrib.auth.views import login
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -21,7 +21,9 @@ urlpatterns = patterns('',
     url(r'^account/login$', login, {'template_name': 'login_new.html'}),
     url(r'^css/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/supertool/projects/www/UserManager/assets/css'}),
     url(r'^js/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/supertool/projects/www/UserManager/assets/js'}),
-    url(r'^images/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/supertool/projects/www/UserManager/assets/images'}),
-    url(r'^account/logout/$', logout),
+    url(r'^img/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/supertool/projects/www/UserManager/assets/img'}),
+    url(r'^ico/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/supertool/projects/www/UserManager/assets/ico'}),
+    url(r'^logout/$', views.Logout),
     url(r'^index$', views.Index),
+    url(r'^detail/(\d+)/$', views.BugDetail),
 )

@@ -2,59 +2,47 @@
 {% block title %}首页{% endblock %}
 {% block content %}
 <div id="main">
-    <div>
-        <p>
-            <i class=" icon-th-list"></i>
-            最新吐槽
-        </p>
-        <div style="margin:0;padding:0; width:735px;height:1px;background-color:#8aabe5;overflow:hidden;"></div>
-    </div>
-    <div>
+    <div class="span9">
+        <span>
+            <h4><i class="icon-list-alt"></i>&nbsp;最新吐槽</h4>
+        </span>
         {% for bug in bugs %}
-            <p>{{ bug.title }}</p>
+            <div style="border-top: #f5f5f5 1px solid; ">
+                <div>
+                    <a href="#">beng</a>吐槽了bug:
+                    <span style="float: right">5个小时前</span>
+                </div>
+                <div>
+                    <h5><a href="/detail/{{ bug.id }}" target="_blank">{{ bug.title }}</a></h5>
+                    <span>{{ bug.explain }}</span>
+                </div>
+                <div id="bOperate">
+                    <ul>
+                        <li><a href="#" onclick="return chg('comment');" id="comment_a">评论</a></li>
+                        <li><a href="#" data-toggle="popover" data-html="true" data-container="div" data-placement="bottom" data-content="<input type='text' />">槽点</a></li>
+                        <li><a href="#">关注</a></li>
+                    </ul>
+                </div>
+                <br>
+                <div id="comment" style="display: none;">
+                    脚本之家，脚本编程基地。欢迎大家学习交流。
+                </div>
+            </div>
+            <br>
+            <br>
         {% endfor %}
     </div>
-
-    <!-- 建立一个模态对话框，渐显渐消 -->
-<div id="myModal" class="modal hide fade">
-    <!-- 对话框内容 -->
-    <div class="modal-body">
-        Hello world!
-    </div>
-    <!-- 对话框按钮 -->
-    <div class="modal-footer">
-        <a href="#" class="btn primary">OK</a>
-    </div>
 </div>
-</div>
-
 <script type="text/javascript">
-// 确保对话框只在页面加载完成后显示
-$(function() {
-    // 点击之后隐藏对话框
-    $("#myModal").bind("show", function() {
-        $("#myModal a.btn").click(function(e) {
-            // 这里放点击后的代码
-            // 我们这里只放一点示例内容
-            console.log("button pressed: "+$(this).html());
-
-            // 隐藏对话框
-            $("#myModal").modal('hide');
-        });
-    });
-
-    // 对话框隐藏后就可以删除事件监听了
-    $("#myModal").bind("hide", function() {
-        // 所谓“松绑”
-        $("#myModal a.btn").unbind();
-    });
-
-    // 最后再设置对话框本身
-    $("#myModal").modal({
-      "backdrop"  : "static",
-      "keyboard"  : true,
-      "show"      : true    // 这个参数确保对话框立即显示
-    });
-});
+    function chg(id_num){
+        var oa = document.getElementById(id_num);
+        var ob = document.getElementById("comment_a");
+        if(oa.style.display == "block"){
+            oa.style.display = "none";
+        }else{
+            oa.style.display = "block";
+        }
+    return false;
+    }
 </script>
 {% endblock %}

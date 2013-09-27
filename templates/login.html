@@ -1,23 +1,6 @@
-<!DOCTYPE html>
-{% load bootstrap_toolkit %}
-<html>
-<head>
-    <title>用户登陆</title>
-</head>
-{% bootstrap_stylesheet_tag %}
-{% bootstrap_stylesheet_tag "responsive" %}
-<style type="text/css">
-    .center {
-        width: auto;
-        display: table;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .text-center {
-        text-align: center;
-    }
-</style>
-<body>
+{% extends "base.html" %}
+{% block title %}登陆{% endblock %}
+{% block content %}
     <div class="container">
         <br><br><br><br><br><br><br><br><br><br>
         <form action="" method="POST">
@@ -47,5 +30,4 @@
             </div>
         </form>
     </div>
-</body>
-</html>
+{% endblock %}

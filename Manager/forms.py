@@ -23,6 +23,10 @@ class RegisteForm(forms.Form):
 
 class LoginForm(forms.Form):
     name = forms.CharField(max_length=60)
-    password = forms.CharField(max_length=60)
+    password = forms.CharField(max_length=60, widget=forms.PasswordInput())
 
 
+class BugContentForm(forms.Form):
+    title = forms.CharField(max_length=100)
+    content = forms.CharField(max_length=1000)
+    sign = forms.CharField(max_length=10)

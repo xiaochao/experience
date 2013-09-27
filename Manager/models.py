@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import *
 
 
 class User(models.Model):
@@ -9,7 +10,7 @@ class User(models.Model):
 class Bug(models.Model):
     title = models.CharField(max_length=200)
     explain = models.CharField(max_length=1000)
-    time = models.DateTimeField(auto_now_add=True)
+    time = models.DateTimeField(auto_now=True, default=datetime.now())
     author = models.CharField(max_length=10)
     delete = models.BooleanField(default=False)
     kind = models.CharField(max_length=1000)
