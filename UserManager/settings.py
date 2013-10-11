@@ -126,6 +126,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'Manager',
     'bootstrap_toolkit',
+    'django.contrib.comments',
 )
 
 # A sample logging configuration. The only tangible logging

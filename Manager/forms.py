@@ -30,3 +30,6 @@ class BugContentForm(forms.Form):
     title = forms.CharField(max_length=100)
     content = forms.CharField(max_length=1000)
     sign = forms.CharField(max_length=10)
+
+class CommentForm(forms.Form):
+    vomit = forms.CharField(max_length=500)

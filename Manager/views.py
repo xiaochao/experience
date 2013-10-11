@@ -2,14 +2,13 @@
 # Create your views here
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, Http404
-from Manager.forms import RegisteForm,LoginForm
+from Manager.forms import RegisteForm,LoginForm,CommentForm
 from Manager.error import *
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from Manager.models import Bug
+from Manager.models import Bug, CommentModel
 import time
-
 
 @csrf_exempt
 def Registe(request):
@@ -34,6 +33,8 @@ def Registe(request):
 @csrf_exempt
 def Login(request):
     errors = dict()
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/index')
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -84,3 +85,28 @@ def BugDetail(request, id):
     bug_id = id
     bug = Bug.objects.get(id='%s' % bug_id)
     return render_to_response('detail.html', {'error':error, 'bug':bug})
+
+@csrf_exempt
+def Test(request):
+    error = dict()
+    return render_to_response('test.html', {'user_login':request.user.is_authenticated()})
+
+@csrf_exempt
+def Comment(request):
+    error = dict()
+    if request.method == 'POST':
+        forms = CommentForm(request.POST)
+        if forms.is_valid():
+            context = forms.cleaned_data
+            c = CommentModel(comment=context['vomit'], author=request.user.username)
+            try:
+                c.save()
+                return HttpResponseRedirect('')
+            except:
+                error['save'] = '保存吐槽内容失败'
+        else:
+            error = forms._errors
+    else:
+        forms = CommentForm()
+    comments = CommentModel.objects.filter(bug_id='1')
+    return render_to_response('comment.html',{'forms':forms, 'errors':error, 'comments':comments})

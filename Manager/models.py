@@ -14,3 +14,10 @@ class Bug(models.Model):
     author = models.CharField(max_length=10)
     delete = models.BooleanField(default=False)
     kind = models.CharField(max_length=1000)
+
+class CommentModel(models.Model):
+    bug_id = models.CharField(max_length=20, default=1)
+    comment = models.CharField(max_length=500)
+    author = models.CharField(max_length=50, default='temp_user')
+    delete = models.BooleanField(default=False)
+    perfect = models.IntegerField(default=0)

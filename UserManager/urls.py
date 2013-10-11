@@ -26,4 +26,6 @@ urlpatterns = patterns('',
     url(r'^logout/$', views.Logout),
     url(r'^index$', views.Index),
     url(r'^detail/(\d+)/$', views.BugDetail),
+    url(r'^test$', views.Test),
+    url(r'^comment$', views.Comment),
 )

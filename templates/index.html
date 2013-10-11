@@ -19,10 +19,13 @@
                 <div id="bOperate">
                     <ul>
                         <li><a href="#" onclick="return chg('comment');" id="comment_a">评论</a></li>
-                        <li><a href="#" data-toggle="popover" data-html="true" data-container="div" data-placement="bottom" data-content="<input type='text' />">槽点</a></li>
+                        <li>
+                            <a href="javascript:MyLoad('comments{{ bug.id }}', '/comment')">槽点</a>
+                        </li>
                         <li><a href="#">关注</a></li>
                     </ul>
                 </div>
+                <div id="comments{{ bug.id }}" style="height: 100%;width: 100%"></div>
                 <br>
                 <div id="comment" style="display: none;">
                     脚本之家，脚本编程基地。欢迎大家学习交流。
@@ -45,4 +48,7 @@
     return false;
     }
 </script>
+<script type="text/javascript" src="js/ajaxrequest.js">
+</script>
+<script type="text/javascript" src="js/myload.js"></script>
 {% endblock %}
