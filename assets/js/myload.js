@@ -17,14 +17,12 @@ function MyLoad(load_id, load_page){
         }
 
 
-function MySubmit(load_id, load_page){
+function MySubmit(){
     var $sbt_value=$("#id_vomit").val();
     var $url="http://127.0.0.1:8000/comment";
     $.post($url,
             {'vomit':$sbt_value},
             function(data){
-		        MyLoad(load_id, load_page);
-                MyLoad(load_id, load_page);
             }
     )
 }

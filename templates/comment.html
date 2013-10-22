@@ -6,7 +6,7 @@
 }
 .input_full
 {
-    width: 100%;
+    width: 97%;
 }
 </style>
 <script src="http://www.w3school.com.cn/jquery/jquery.js"></script>
@@ -15,20 +15,18 @@
         alert('bye bye');
     }
 </script>
-
-<div id="child" class="table table_comment" algin="middle">
+<br>
+<div id="child" class="table_comment" algin="middle" style="width: 60%">
     <form action="/comment" method="POST" id="myform">
-            <input id="id_vomit" class="input_full" name="vomit" type="text">
+        <input id="id_vomit" class="input_full" name="vomit" type="text">
     </form>
+    <button id='tijiao' onclick="MySubmit('test', '/comment')">评论</button>
 
-    <button id='tijiao' onclick="MySubmit('test', '/comment')">触发表单域的 submit 事件</button>
     {% for comment in comments %}
-        <div class="row">
-        <hr style="border:1px dashed #ffffff; height:1px">
-        <span>来自<a href="#">{{ comment.author }}</a>的吐槽：</span>
+        <hr>
+        来自<a href="#">{{ comment.author }}</a>的吐槽：
         &nbsp;
         <span>{{ comment.comment }}</span>
-        </div>
     {% endfor %}
 </div>
 

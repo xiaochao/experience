@@ -28,4 +28,5 @@ urlpatterns = patterns('',
     url(r'^detail/(\d+)/$', views.BugDetail),
     url(r'^test$', views.Test),
     url(r'^comment$', views.Comment),
+    url(r'^personal$', views.Personal),
 )

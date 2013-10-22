@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block title %}首页{% endblock %}
 {% block content %}
+<script type="text/javascript" src="js/ajaxrequest.js"></script>
+<script type="text/javascript" src="js/myload.js"></script>
+<script src="http://www.w3school.com.cn/jquery/jquery.js"></script>
 <div id="main">
     <div class="span9">
         <span>
@@ -18,18 +21,14 @@
                 </div>
                 <div id="bOperate">
                     <ul>
-                        <li><a href="#" onclick="return chg('comment');" id="comment_a">评论</a></li>
+                        <li><a href="javascript:MyLoad('comments{{ bug.id }}', '/comment')">评论</a></li>
                         <li>
-                            <a href="javascript:MyLoad('comments{{ bug.id }}', '/comment')">槽点</a>
+                            <a href="#">槽点</a>
                         </li>
                         <li><a href="#">关注</a></li>
                     </ul>
                 </div>
                 <div id="comments{{ bug.id }}" style="height: 100%;width: 100%"></div>
-                <br>
-                <div id="comment" style="display: none;">
-                    脚本之家，脚本编程基地。欢迎大家学习交流。
-                </div>
             </div>
             <br>
             <br>
@@ -48,7 +47,5 @@
     return false;
     }
 </script>
-<script type="text/javascript" src="js/ajaxrequest.js">
-</script>
-<script type="text/javascript" src="js/myload.js"></script>
+
 {% endblock %}

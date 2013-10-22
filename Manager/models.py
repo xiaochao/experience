@@ -21,3 +21,10 @@ class CommentModel(models.Model):
     author = models.CharField(max_length=50, default='temp_user')
     delete = models.BooleanField(default=False)
     perfect = models.IntegerField(default=0)
+
+class PersonMsg(models.Model):
+    user_id = models.CharField(max_length=10)
+    gender = models.BooleanField(default=True)
+    industry = models.CharField(max_length=200)
+    skill = models.CharField(max_length=100)
+    introduce = models.CharField(max_length=200)

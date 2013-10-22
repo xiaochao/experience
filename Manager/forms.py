@@ -33,3 +33,9 @@ class BugContentForm(forms.Form):
 
 class CommentForm(forms.Form):
     vomit = forms.CharField(max_length=500)
+
+class PersonalForm(forms.Form):
+    gender = forms.BooleanField()
+    industry = forms.CharField(max_length=200)
+    skill = forms.CharField(max_length=100)
+    introduce = forms.CharField(max_length=200)

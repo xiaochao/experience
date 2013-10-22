@@ -2,12 +2,12 @@
 # Create your views here
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, Http404
-from Manager.forms import RegisteForm,LoginForm,CommentForm
+from Manager.forms import *
 from Manager.error import *
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from Manager.models import Bug, CommentModel
+from Manager.models import *
 import time
 
 @csrf_exempt
@@ -110,3 +110,12 @@ def Comment(request):
         forms = CommentForm()
     comments = CommentModel.objects.filter(bug_id='1')
     return render_to_response('comment.html',{'forms':forms, 'errors':error, 'comments':comments})
+
+@csrf_exempt
+def Personal(request):
+    if request.method == 'POST':
+        forms = PersonalForm(request.POST)
+    else:
+        forms = PersonalForm()
+    mine = PersonMsg.objects.filter(user_id=request.user.id)
+    return render_to_response('personal.html', {'forms':forms, 'mine':mine, 'user':request.user})

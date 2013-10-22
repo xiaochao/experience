@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}个人名片{% endblock %}
+{% block content %}
+    <br><br><br><br><br><br><br><br><br>
+    <div class="center" style="width:40%;background: #f5f5f5">
+    <div class="center">
+        <label>用户名：{{ user.username }}</label>
+        <label>绑定邮箱:{{ user.email }}</label>
+        <form action="" method="POST">
+            <div>
+                <label>性别：
+                    <input id="gender0" name="gender" type="radio" value="0" checked/>男
+                    <input id="gender1" name="gender" type="radio" value="1"/>女
+                </label>
+            </div>
+            <div>
+                <label>行业：
+                    <input id="id_industry" maxlength="200" name="industry" type="text" />
+                </label>
+            </div>
+            <div>
+                <label>技能：
+                    <input id="id_skill" maxlength="100" name="skill" type="text" />
+                </label>
+            </div>
+            <div>
+                <label>简介：
+                    <input id="id_introduce" maxlength="200" name="introduce" type="text" />
+                </label>
+            </div>
+            <input type="submit" value="修改" />
+        </form>
+    </div>
+    </div>
+{% endblock %}
